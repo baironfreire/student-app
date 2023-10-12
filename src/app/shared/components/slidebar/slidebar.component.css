@@ -1,0 +1,20 @@
+/* Estilos de la barra lateral */
+.sidebar {
+    width: 250px;
+    background-color: #444;
+    color: #fff;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #555;
+}

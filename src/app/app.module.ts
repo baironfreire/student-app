@@ -4,12 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { SlidebarComponent } from './shared/components/slidebar/slidebar.component';
+import { AdminComponent } from './layouts/admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SlidebarComponent
+    SlidebarComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule
