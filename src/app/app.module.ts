@@ -2,19 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { SlidebarComponent } from './shared/components/slidebar/slidebar.component';
+import { APP_ROUTES } from './app.route';
 import { AdminComponent } from './layouts/admin/admin.component';
+import { ManageStudentModule } from './modules/manage-student/manage-student.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    SlidebarComponent,
     AdminComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    APP_ROUTES,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
