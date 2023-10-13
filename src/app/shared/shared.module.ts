@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { DataTablesModule } from 'angular-datatables';
 import { HeaderComponent } from './components/header/header.component';
 import { SlidebarComponent } from './components/slidebar/slidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,12 +14,14 @@ import { SlidebarComponent } from './components/slidebar/slidebar.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     DataTablesModule
   ],
   exports: [
     HeaderComponent,
     SlidebarComponent,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

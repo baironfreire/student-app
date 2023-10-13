@@ -14,7 +14,7 @@ const routes: Routes = [
         component: StudentListComponent,
       },
       {
-        path: 'student-detail',
+        path: 'student-detail/:id',
         component: StudentDeatilComponent
       },
       {
