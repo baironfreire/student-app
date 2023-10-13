@@ -13,7 +13,7 @@ import { SlidebarComponent } from './components/slidebar/slidebar.component';
   ],
   imports: [
     CommonModule,
-    DataTablesModule,
+    DataTablesModule
   ],
   exports: [
     HeaderComponent,

@@ -5,6 +5,7 @@ import { ManageStudentRoutingModule } from './manage-student-routing.module';
 import { StudentListComponent } from './student-list/student-list.component';
 import { StudentDeatilComponent } from './student-deatil/student-deatil.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     ManageStudentRoutingModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
   exports: [
     StudentListComponent,

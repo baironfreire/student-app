@@ -11,9 +11,9 @@
                             </tr>
                         </thead>
                         <tbody #row>
-                            <tr>
-                                <td>Bairon</td>
-                                <td>Ver</td>
+                            <tr *ngFor="let student of students">
+                                <td>{{ student.name}}</td>
+                                <td><a href="#">{{ student.id}}</a></td>
                             </tr>
                         </tbody>
                         <tfoot class="grey lighten-5 w-100">
