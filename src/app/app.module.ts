@@ -6,6 +6,7 @@ import { APP_ROUTES } from './app.route';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { ManageStudentModule } from './modules/manage-student/manage-student.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     APP_ROUTES,
-    SharedModule
+    SharedModule,
+    ManageStudentModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

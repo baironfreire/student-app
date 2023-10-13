@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { DataTablesModule } from 'angular-datatables';
 import { HeaderComponent } from './components/header/header.component';
 import { SlidebarComponent } from './components/slidebar/slidebar.component';
 
@@ -12,10 +13,12 @@ import { SlidebarComponent } from './components/slidebar/slidebar.component';
   ],
   imports: [
     CommonModule,
+    DataTablesModule,
   ],
   exports: [
     HeaderComponent,
-    SlidebarComponent
+    SlidebarComponent,
+    DataTablesModule
   ]
 })
 export class SharedModule { }
