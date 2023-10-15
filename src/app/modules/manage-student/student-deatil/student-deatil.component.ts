@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute  } from '@angular/router';
+import { SharedService } from '../../../shared/services/shared.service';
 
 export interface IEstudent {
   id:             number;
@@ -28,15 +29,11 @@ export class StudentDeatilComponent {
   newQualification!: Qualification;
 
   constructor(
-    private route: ActivatedRoute
+    private sharedService: SharedService
   ){}
 
-  ngOnInit() {
-    const studentData = this.route.snapshot.queryParams
-    if(studentData && studentData['student']){
-      this.student = JSON.parse(studentData['student'])
-      console.log('this', this.student);
-    }
+  async ngOnInit() {
+    this.student = this.sharedService.getSharedData();
   }
 
   addQualification() {

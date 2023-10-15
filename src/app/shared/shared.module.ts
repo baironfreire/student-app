@@ -4,6 +4,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { HeaderComponent } from './components/header/header.component';
 import { SlidebarComponent } from './components/slidebar/slidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedService } from './services/shared.service';
 
 
 
@@ -22,6 +23,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     SlidebarComponent,
     DataTablesModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    SharedService
   ]
 })
 export class SharedModule { }
