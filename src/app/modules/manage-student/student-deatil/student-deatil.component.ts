@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute  } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { StudentService } from 'src/app/core/services/student/student.service';
 import { SharedService } from '../../../shared/services/shared.service';
 
 export interface IEstudent {
@@ -25,16 +28,44 @@ export interface Qualification {
 export class StudentDeatilComponent {
   @Input()
   student!: IEstudent;
+  idStudent!: number;
+
+  public formEstudent!: FormGroup;
 
   newQualification!: Qualification;
 
   constructor(
-    private sharedService: SharedService
+    private _studentService: StudentService,
+    private sharedService: SharedService,
+    private _formBuilder: FormBuilder,
+    private router: ActivatedRoute
   ){}
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.router.params.subscribe((params) => {
+      this.idStudent = params['id'];
+    })    
     this.student = this.sharedService.getSharedData();
+    this.formEstudent = this.buildFormEstudent(this._formBuilder);
   }
+
+  public buildFormEstudent(formBuilder: FormBuilder): FormGroup {
+    return formBuilder.group({
+      name:     [null, [Validators.required]],
+      age:      [null, [Validators.required]],
+      address:  [null, [Validators.required]]
+    })
+  }
+
+  public onSubmit(): void{   
+    if(!this.formEstudent.valid) return;
+    this._studentService.updateEstudent(this.idStudent, this.formEstudent.value).subscribe(
+      (response) => {
+        console.log('respuesta', response);
+      }
+    );
+
+  } 
 
   addQualification() {
     if (this.newQualification) {

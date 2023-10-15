@@ -16,7 +16,8 @@ import { SharedService } from './services/shared.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
