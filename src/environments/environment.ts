@@ -4,7 +4,7 @@ export const environment =  Object.freeze({
     API: {
         student: {
             get_students: apiUrl + 'students',
-            put_student: apiUrl  + 'students' 
+            put_student: apiUrl  + '' 
         }
     }
 })

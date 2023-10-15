@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { StudentService } from 'src/app/core/services/student/student.service';
 import { SharedService } from '../../../shared/services/shared.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 export interface IEstudent {
   id:             number;
@@ -38,7 +39,8 @@ export class StudentDeatilComponent {
     private _studentService: StudentService,
     private sharedService: SharedService,
     private _formBuilder: FormBuilder,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private _alertService: AlertService
   ){}
 
   ngOnInit() {
@@ -62,8 +64,23 @@ export class StudentDeatilComponent {
     this._studentService.updateEstudent(this.idStudent, this.formEstudent.value).subscribe(
       (response) => {
         console.log('respuesta', response);
+        if(response){
+          this._alertService.openSwal({
+            title: "Success",
+            text: "Se actualizo la información",
+            type: "success"
+          })
+        }
+      },
+      (error) => {
+        console.log('Error', error);
+        this._alertService.openSwal({
+          title: "Error",
+          text: "Error en la operación, por favor comuniquese con el administrador del sitio",
+          type: "error"
+        })
       }
-    );
+    )
 
   } 
 

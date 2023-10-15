@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SlidebarComponent } from './components/slidebar/slidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from './services/shared.service';
+import { AlertService } from './services/alert.service';
 
 
 
@@ -26,7 +27,8 @@ import { SharedService } from './services/shared.service';
     ReactiveFormsModule
   ],
   providers: [
-    SharedService
+    SharedService,
+    AlertService
   ]
 })
 export class SharedModule { }
