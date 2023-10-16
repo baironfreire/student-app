@@ -1,11 +1,18 @@
 <!-- Barra lateral -->
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark  h-100 position-fixed shadow" style="width: 250px;">
+<div class="d-flex flex-column flex-shrink-0 p-3 h-100 text-white bg-dark position-fixed" style="width: 250px;">
     <ul class="nav nav-pills flex-column mb-auto">
-       <li class="nav-item">
-            <a href="#/student-list" class="nav-link text-white">
-                <i class="bi bi-file-earmark-plus"></i>
-                Lista de Estudiantes
+       <li class="nav-item" *ngFor="let menu of _sidebarService.menu">
+            <a [href]="[menu.href]" data-bs-toggle="collapse" class="btn btn-toggle align-items-center rounded">
+                <span class="text-white">{{menu.title}}</span>
             </a>
+            <ul aria-expanded="true" class="collapse" [id]="menu.id">
+                <li *ngFor="let submenu of menu.submenu">
+                    <a [routerLink]="[submenu.url]">
+                        <i class="bi bi-file-earmark-plus"></i>
+                        <span class="text-white">{{submenu.title}}</span> 
+                    </a>
+                </li>
+            </ul>
        </li> 
     </ul>
 </div>

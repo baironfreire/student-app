@@ -48,14 +48,22 @@ export class StudentDeatilComponent {
       this.idStudent = params['id'];
     })    
     this.student = this.sharedService.getSharedData();
-    this.formEstudent = this.buildFormEstudent(this._formBuilder);
+    this.formEstudent = this.buildFormEstudent(this._formBuilder, this.student);
+    this.initQualification();
   }
 
-  public buildFormEstudent(formBuilder: FormBuilder): FormGroup {
+  public initQualification(){
+    this.newQualification = {
+      id: 0,
+      name: ''
+    }
+  }
+
+  public buildFormEstudent(formBuilder: FormBuilder, student:any): FormGroup {
     return formBuilder.group({
-      name:     [null, [Validators.required]],
-      age:      [null, [Validators.required]],
-      address:  [null, [Validators.required]]
+      name:     [student.name, [Validators.required]],
+      age:      [student.age, [Validators.required]],
+      address:  [student.address, [Validators.required]]
     })
   }
 
@@ -84,7 +92,9 @@ export class StudentDeatilComponent {
 
   } 
 
-  addQualification() {
+  onSumbiQualification() {
+    console.log('newQualification', this.newQualification);
+    
     if (this.newQualification) {
       this.student.qualifications.push(this.newQualification);
       this.newQualification = {name: '', id: 0};
@@ -92,6 +102,20 @@ export class StudentDeatilComponent {
   }
 
   removeQualification(index: number) {
-    this.student.qualifications.splice(index, 1);
+    this._alertService.openConfirmsSwal({
+      title: "Confirmar!",
+      text: "¿Esta seguro de eliminar?",
+      type: "warning",
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+      showCancelButton: true,
+      allowEscapeKey: false,
+      handlerConfirm: () => {
+        this.student.qualifications.splice(index, 1);
+      },
+      handlerCancel: () => {
+
+      }
+    })
   }
 }

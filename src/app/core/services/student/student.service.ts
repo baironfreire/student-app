@@ -20,4 +20,8 @@ export class StudentService {
   updateEstudent(id: number, student: any) {
     return this.http.put(`${this.apiUrl.student.put_student}/${id}`, student);
   }
+
+  getStudentsById(): Observable<any[]>{
+    return this.http.get<any[]>(this.apiUrl.student.get_students)
+  }
 }

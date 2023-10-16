@@ -9,6 +9,7 @@ import { SharedService } from '../../../shared/services/shared.service';
 })
 export class StudentListComponent {
   students: any[] = [];
+  dtOptions: DataTables.Settings = {};
 
   constructor(
     private studentService: StudentService,
@@ -21,7 +22,12 @@ export class StudentListComponent {
       (data) => {
         this.students = data;
       }
-    )
+    );
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      ordering: false
+    };
   }
 
   navigateToStudentDetails(student: any) {

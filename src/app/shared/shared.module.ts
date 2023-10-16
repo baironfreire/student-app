@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { HeaderComponent } from './components/header/header.component';
 import { SlidebarComponent } from './components/slidebar/slidebar.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SharedService } from './services/shared.service';
 import { AlertService } from './services/alert.service';
+import { SharedService } from './services/shared.service';
+import { SidebarService } from './services/sidebar.service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,6 +18,7 @@ import { AlertService } from './services/alert.service';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     DataTablesModule,
     ReactiveFormsModule
@@ -28,7 +31,8 @@ import { AlertService } from './services/alert.service';
   ],
   providers: [
     SharedService,
-    AlertService
+    AlertService,
+    SidebarService
   ]
 })
 export class SharedModule { }

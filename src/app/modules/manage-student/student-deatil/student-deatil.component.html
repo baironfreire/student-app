@@ -11,17 +11,17 @@
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre: </label>
                                 <input type="name" class="form-control" id="name" aria-describedby="name" formControlName="name">
-                                <div id="nameHelp" class="form-text">Ingrese su nombre completo.</div>
+                                <!-- <div id="nameHelp" class="form-text">Ingrese su nombre completo.</div> -->
                             </div>
                             <div class="mb-3">
                                 <label for="age" class="form-label">Edad: </label>
                                 <input type="number" class="form-control" id="age" aria-describedby="age" formControlName="age">
-                                <div id="ageHelp" class="form-text">Ingrese su edad.</div>
+                                <!-- <div id="ageHelp" class="form-text">Ingrese su edad.</div> -->
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Dirección de residencia: </label>
                                 <input type="text" class="form-control" id="address" aria-describedby="address" formControlName="address">
-                                <div id="addressHelp" class="form-text">Ingrese su dirección de residencia.</div>
+                                <!-- <div id="addressHelp" class="form-text">Ingrese su dirección de residencia.</div> -->
                             </div>
                             <button type="submit" class="btn btn-primary" [disabled]="!formEstudent.valid">Actualizar información</button>
                         </form>
@@ -32,13 +32,13 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <form>
+                                            <form (submit)="onSumbiQualification()">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text">
                                                         <i class="bi bi-person"></i>
                                                     </span>
-                                                    <input type="text" class="form-control" placeholder="Ingrese una cualificación" id="nombre">
-                                                    <button type="button" class="btn btn-primary" id="guardarBtn" (click)="addQualification()">Agregar</button>
+                                                    <input type="text" [(ngModel)]="newQualification.name" name="name" class="form-control" placeholder="Ingrese una cualificación" id="nombre">
+                                                    <button type="submit" class="btn btn-primary">Agregar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -56,7 +56,7 @@
                                         <tr *ngFor="let qualification of student.qualifications; let i = index">
                                             <td>{{qualification.name}}</td>
                                             <td>
-                                                <a href="#" (click)="removeQualification(i)" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+                                                <a (click)="removeQualification(i)" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </td>
