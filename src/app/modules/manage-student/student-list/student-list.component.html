@@ -1,9 +1,9 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-12">
         <div class="card shadow-lg border-0 rounded-lg mt-5 mx-auto">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table datatable  [dtOptions]="dtOptions" class="table table-striped">
+                    <table datatable   class="table table-striped">
                         <thead class="sticky-top">
                             <tr>
                                 <th>Nombre</th>
@@ -13,7 +13,7 @@
                         <tbody>
                             <tr *ngFor="let student of students">
                                 <td>{{ student.name}}</td>
-                                <td><a (click)="navigateToStudentDetails(student)">Ver Detalles</a></td>
+                                <td><a [routerLink]="['/student-detail', student.id]" (click)="navigateToStudentDetails(student)">Ver Detalles</a></td>
                             </tr>
                         </tbody>
                         <tfoot class="grey lighten-5 w-100">
@@ -23,6 +23,43 @@
                         </tfoot>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-lg border-0 rounded-lg mt-5 mx-auto">
+            <div class="card-body">
+                <mat-form-field>
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el Nombre del estudiante" #input>
+                </mat-form-field>
+
+                <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8">
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+    
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> Acción </th>
+                        <td mat-cell *matCellDef="let element">
+                            <a [routerLink]="['/student-detail', element.id]" (click)="navigateToStudentDetails(element)">
+                                Ver Detalles 
+                            </a> 
+                        </td>
+                    </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+    
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+                </mat-paginator>
+                
             </div>
         </div>
     </div>

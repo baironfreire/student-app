@@ -1,38 +1,52 @@
-import { Component } from '@angular/core';
-import { StudentService } from 'src/app/core/services/student/student.service';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { StudentService } from 'src/app/core/services/student/student.service';
 import { SharedService } from '../../../shared/services/shared.service';
+
+
+export interface IEstudent {
+  id: number;
+  name: string;
+  age: number;
+  address: string;
+}
+
+
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent {
-  students: any[] = [];
-  dtOptions: DataTables.Settings = {};
+  displayedColumns: string[] = ['name', 'id']
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
 
   constructor(
     private studentService: StudentService,
-    private sharedService: SharedService,
-    private router:Router
+    private sharedService: SharedService
   ){}
 
   ngOnInit(): void {
     this.studentService.getStudents().subscribe(
       (data) => {
-        this.students = data;
+        console.log('students', data);
+        this.dataSource = new MatTableDataSource<IEstudent>(data);
+        this.dataSource.paginator = this.paginator;
       }
     );
-
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      ordering: false
-    };
   }
 
   navigateToStudentDetails(student: any) {
     this.sharedService.setSharedData(student);
-    this.router.navigate(['/student-detail', student.id]);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

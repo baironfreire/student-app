@@ -1,14 +1,16 @@
-<!-- Encabezado -->
+ <!-- Encabezado -->
 <app-header></app-header>
-
-<!-- Barra lateral -->
-<app-slidebar></app-slidebar>
-
-<!-- Contenido principal (Aquí iría el contenido específico de la página) -->
-<div class="page-wrapper"  style="margin-left: 250px; padding: 20px;">
-    <div class="container-fluid">
-        <!-- <app-breadcrumbs></app-breadcrumbs> -->
-        <router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Barra lateral -->
+        <app-slidebar></app-slidebar>
+            
+        <!-- Contenido principal -->
+        <main class="col-md-4 ms-sm-auto col-lg-9 px-4">
+            <router-outlet></router-outlet>
+        </main>
     </div>
+ 
 </div>
+
 
