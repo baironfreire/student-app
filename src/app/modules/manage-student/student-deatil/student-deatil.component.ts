@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { StudentService } from 'src/app/core/services/student/student.service';
 import { SharedService } from '../../../shared/services/shared.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface IEstudent {
   id:             number;
@@ -70,9 +71,15 @@ export class StudentDeatilComponent {
   public onSubmit(): void{   
     if(!this.formEstudent.valid) return;
     this._studentService.updateEstudent(this.idStudent, this.formEstudent.value).subscribe(
-      (response) => {
+      (response:any) => {
         console.log('respuesta', response);
         if(response){
+          this.formEstudent.patchValue({
+            name: response.name,
+            age: response.age,
+            id: response.id,
+            address: response.address
+          })
           this._alertService.openSwal({
             title: "Success",
             text: "Se actualizo la información",
