@@ -8,13 +8,15 @@ import { AlertService } from './services/alert.service';
 import { SharedService } from './services/shared.service';
 import { SidebarService } from './services/sidebar.service';
 import { RouterModule } from '@angular/router';
+import { NopagefoundComponent } from './components/nopagefound/nopagefound.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    SlidebarComponent
+    SlidebarComponent,
+    NopagefoundComponent
   ],
   imports: [
     CommonModule,

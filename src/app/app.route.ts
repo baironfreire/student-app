@@ -1,12 +1,11 @@
 import { RouterModule, Routes } from "@angular/router";
-import { AdminComponent } from "./layouts/admin/admin.component";
-import { StudentListComponent } from "./modules/manage-student/student-list/student-list.component";
+import { NopagefoundComponent } from "./shared/components/nopagefound/nopagefound.component";
 
 
 const appRoutes: Routes = [
     {
         path: '**', 
-        component: StudentListComponent
+        component: NopagefoundComponent
     }
 ];
 
