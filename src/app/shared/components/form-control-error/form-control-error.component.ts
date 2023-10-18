@@ -34,18 +34,7 @@ export class FormControlErrorComponent implements OnInit, ControlValueAccessor {
     private controlContainer: ControlContainer,
     private helper: HelperService
   ) {}
-  writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
-  }
-  registerOnChange(fn: any): void {
-    throw new Error('Method not implemented.');
-  }
-  registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
-  }
-  setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
-  }
+
 
   ngOnInit() {
     this.control = this.controlContainer.control.get(this.formControlName);
@@ -94,5 +83,7 @@ export class FormControlErrorComponent implements OnInit, ControlValueAccessor {
     return messages[errorName].call(this, error);
   }
 
-
+  writeValue(value: any) {}
+  registerOnChange(fn) {}
+  registerOnTouched(fn) {}
 }

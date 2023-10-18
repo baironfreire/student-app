@@ -10,21 +10,18 @@
                         <form [formGroup]="formEstudent" (ngSubmit)="onSubmit()">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre: </label>
-                                <input type="name" class="form-control" id="name" aria-describedby="name" formControlName="name">
+                                <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
                                 <app-form-control-error formControlName="name"></app-form-control-error>
-                                <!-- <div id="nameHelp" class="form-text">Ingrese su nombre completo.</div> -->
                             </div>
                             <div class="mb-3">
                                 <label for="age" class="form-label">Edad: </label>
                                 <input type="number" class="form-control" id="age" aria-describedby="age" formControlName="age">
                                 <app-form-control-error formControlName="age"></app-form-control-error>
-                                <!-- <div id="ageHelp" class="form-text">Ingrese su edad.</div> -->
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Dirección de residencia: </label>
                                 <input type="text" class="form-control" id="address" aria-describedby="address" formControlName="address">
-                                <app-form-control-error formControlName="address"></app-form-control-error>
-                                <!-- <div id="addressHelp" class="form-text">Ingrese su dirección de residencia.</div> -->
+                                <!-- <app-form-control-error formControlName="address"></app-form-control-error> -->
                             </div>
                             <button type="submit" class="btn btn-primary" [disabled]="!formEstudent.valid">Actualizar información</button>
                         </form>
@@ -40,7 +37,7 @@
                                                     <span class="input-group-text">
                                                         <i class="bi bi-person"></i>
                                                     </span>
-                                                    <input type="text" [(ngModel)]="newQualification.name" name="name" class="form-control" placeholder="Ingrese una cualificación" id="nombre">
+                                                    <input type="text" [(ngModel)]="newQualification.subject" name="name" class="form-control" placeholder="Ingrese una cualificación" id="nombre">
                                                     <button type="submit" class="btn btn-primary">Agregar</button>
                                                 </div>
                                             </form>
@@ -57,7 +54,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let qualification of student.qualifications; let i = index">
-                                            <td>{{qualification.name}}</td>
+                                            <td>{{qualification.subject}}</td>
                                             <td>
                                                 <a (click)="removeQualification(i)" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
                                                     <i class="bi bi-trash"></i>

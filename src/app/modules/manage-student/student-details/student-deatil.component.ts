@@ -8,7 +8,7 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface IEstudent {
-  id:             number;
+  studentId:      number;
   name:           string;
   address:        string;
   age:            number;
@@ -16,8 +16,9 @@ export interface IEstudent {
 }
 
 export interface Qualification {
-  id:   number;
-  name: string;
+  qualificationsId: number;
+  subject: string,
+  qualification: number,
 }
 
 @Component({
@@ -35,6 +36,7 @@ export class StudentDeatilComponent {
   public formEstudent!: FormGroup;
 
   newQualification!: Qualification;
+  public qualificationsList: Array<Qualification>;
 
   constructor(
     private _studentService: StudentService,
@@ -42,26 +44,53 @@ export class StudentDeatilComponent {
     private _formBuilder: FormBuilder,
     private router: ActivatedRoute,
     private _alertService: AlertService
-  ){}
+  ){
 
-  ngOnInit() {
+  }
+
+  async ngOnInit() {
     this.router.params.subscribe((params) => {
       this.idStudent = params['id'];
+      this._studentService.getQualificationsByStudent(this.idStudent).subscribe(
+        (data:any) => {
+          this.student.qualifications = data.qualifications
+        }
+      )
+      
     })    
     this.student = this.sharedService.getSharedData();
-    this.formEstudent = this.buildFormEstudent(this._formBuilder, this.student);
+    console.log('recuperado', this.student);
+    if(!this.student){
+      await this._studentService.getStudent(this.idStudent).subscribe(
+        (student:any) => {
+          console.log('estiden get', student);
+          this.student = student;
+          this.formEstudent = this.buildFormEstudent(this._formBuilder, this.student);
+        }
+      )
+    }else{
+      this.formEstudent = this.buildFormEstudent(this._formBuilder, this.student);
+    }
+    
+   
     this.initQualification();
   }
 
+  
+
   public initQualification(){
     this.newQualification = {
-      id: 0,
-      name: ''
+      qualificationsId: 0,
+      subject: '',
+      qualification: 0
     }
   }
 
   public buildFormEstudent(formBuilder: FormBuilder, student:any): FormGroup {
+    console.log('estuden llega al build', student);
+    
     return formBuilder.group({
+      studentId:[student.studentId, [Validators.required]],
       name:     [student.name, [Validators.required]],
       age:      [student.age, [Validators.required]],
       address:  [student.address, [Validators.required]]
@@ -70,16 +99,10 @@ export class StudentDeatilComponent {
 
   public onSubmit(): void{   
     if(!this.formEstudent.valid) return;
-    this._studentService.updateEstudent(this.idStudent, this.formEstudent.value).subscribe(
+    this._studentService.updateStudent(this.formEstudent.value).subscribe(
       (response:any) => {
-        console.log('respuesta', response);
+     
         if(response){
-          this.formEstudent.patchValue({
-            name: response.name,
-            age: response.age,
-            id: response.id,
-            address: response.address
-          })
           this._alertService.openSwal({
             title: "Success",
             text: "Se actualizo la información",
@@ -104,7 +127,7 @@ export class StudentDeatilComponent {
     
     if (this.newQualification) {
       this.student.qualifications.push(this.newQualification);
-      this.newQualification = {name: '', id: 0};
+      this.newQualification = {subject: '', qualificationsId: 0, qualification: 0};
     }
   }
 

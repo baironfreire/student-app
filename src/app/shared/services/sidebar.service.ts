@@ -15,7 +15,7 @@ export class SidebarService {
         id: 'student',
         submenu: [
           {title: 'Lista de Estudiantes', url: '/student-list'},
-          {title: 'Registro de Estudiantes', url: '/user-management'},
+          {title: 'Registro de Estudiantes', url: '/student-add'},
         ]
       }
     ];

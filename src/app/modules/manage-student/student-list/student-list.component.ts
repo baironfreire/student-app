@@ -26,12 +26,12 @@ export class StudentListComponent {
 
 
   constructor(
-    private studentService: StudentService,
+    private _studentService: StudentService,
     private sharedService: SharedService
   ){}
 
   ngOnInit(): void {
-    this.studentService.getStudents().subscribe(
+    this._studentService.getStudents().subscribe(
       (data) => {
         console.log('students', data);
         this.dataSource = new MatTableDataSource<IEstudent>(data);
@@ -41,6 +41,8 @@ export class StudentListComponent {
   }
 
   navigateToStudentDetails(student: any) {
+    console.log('student >>>>', student);
+    
     this.sharedService.setSharedData(student);
   }
 

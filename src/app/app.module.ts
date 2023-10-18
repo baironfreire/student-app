@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { APP_ROUTES } from './app.route';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { ManageStudentModule } from './modules/manage-student/manage-student.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,10 +15,10 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     APP_ROUTES,
     SharedModule,
-    ManageStudentModule,
-    BrowserAnimationsModule
+    ManageStudentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

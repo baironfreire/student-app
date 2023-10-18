@@ -17,11 +17,23 @@ export class StudentService {
     return this.http.get<any[]>(this.apiUrl.student.get_students)
   }
 
-  updateEstudent(id: number, student: any) {
-    return this.http.put(`${this.apiUrl.student.put_student}/${id}`, student);
+  getStudent(id: number): Observable<any[]>{
+    return this.http.get<any>(`${this.apiUrl.student.get_students}/${id}`);
+  }
+  
+  addStudent(student: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl.student.post_student, student)
   }
 
-  getStudentsById(): Observable<any[]>{
-    return this.http.get<any[]>(this.apiUrl.student.get_students)
+  updateStudent(student: any) {
+    return this.http.put(`${this.apiUrl.student.put_student}`, student);
+  }
+
+  deleteStudent(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl.student.put_student}/${id}`);
+  }
+
+  getQualificationsByStudent(studentId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl.student.get_students}/${studentId}/qualifications`); 
   }
 }
