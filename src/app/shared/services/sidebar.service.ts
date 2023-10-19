@@ -10,7 +10,7 @@ export class SidebarService {
     this.menu = [
       {
         title: 'Estudiantes',
-        icon: 'bi bi-caret-down',
+        icon: 'bi bi-mortarboard',
         href: '#student',
         id: 'student',
         submenu: [

@@ -1,16 +1,19 @@
-<nav id="sidebar" class="bg-dark sidebar" >
+<nav id="sidebar" class="bg-dark sidebar">
     <div class="position-sticky">
         <ul class="nav flex-column">
             <li class="nav-item" *ngFor="let menu of _sidebarService.menu">
-                <a class="nav-link" [href]="[menu.href]" data-bs-toggle="collapse">
-                    <i class="bi bi-house-door"></i> {{menu.title}}
+                <a class="nav-link" data-bs-toggle="collapse" [attr.data-bs-target]="'#' + menu.id">
+                    <i class="{{menu.icon}}"></i> {{menu.title}}
                 </a>
-                <div [id]="menu.id" class="collapse">
-                    <ul class="nav flex-column pl-2">
-                        <li class="nav-item" *ngFor="let submenu of menu.submenu">
-                            <a class="nav-link" [routerLink]="[submenu.url]">
-                                {{submenu.title}}
-                            </a>
+                <div [id]="menu.id" class="collapse" >
+                    <ul class="nav flex-column ">
+                        <li class="nav-item mx-4" *ngFor="let submenu of menu.submenu">
+                            <div class="input-group">
+                                <i class="bi bi-check-lg"></i>
+                                <a class="nav-link p-1" [routerLink]="[submenu.url]">
+                                    {{submenu.title}}
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </div>

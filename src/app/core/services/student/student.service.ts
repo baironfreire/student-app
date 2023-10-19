@@ -14,26 +14,26 @@ export class StudentService {
   ) { }
 
   getStudents(): Observable<any[]>{
-    return this.http.get<any[]>(this.apiUrl.student.get_students)
+    return this.http.get<any[]>(this.apiUrl.student.listStudents)
   }
 
   getStudent(id: number): Observable<any[]>{
-    return this.http.get<any>(`${this.apiUrl.student.get_students}/${id}`);
+    return this.http.get<any>(`${this.apiUrl.student.getStudent}/${id}`);
   }
   
   addStudent(student: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl.student.post_student, student)
+    return this.http.post<any>(this.apiUrl.student.saveStudent, student)
   }
 
   updateStudent(student: any) {
-    return this.http.put(`${this.apiUrl.student.put_student}`, student);
+    return this.http.put(`${this.apiUrl.student.updateStudent}/${student.id}`, student);
   }
 
   deleteStudent(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl.student.put_student}/${id}`);
+    return this.http.delete<any>(`${this.apiUrl.student.deleteStudent}/${id}`);
   }
 
   getQualificationsByStudent(studentId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl.student.get_students}/${studentId}/qualifications`); 
+    return this.http.get<any>(`${this.apiUrl.student.getStudentWithQualifications}/${studentId}/qualifications`); 
   }
 }

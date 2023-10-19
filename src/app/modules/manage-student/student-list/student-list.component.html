@@ -31,25 +31,52 @@
     <div class="col-12">
         <div class="card shadow-lg border-0 rounded-lg mt-5 mx-auto">
             <div class="card-body">
-                <mat-form-field>
-                    <mat-label>Filter</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el Nombre del estudiante" #input>
-                </mat-form-field>
-
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-md btn-primary" [routerLink]="['/student-add']">
+                            <i class="bi bi-usb-drive"></i>
+                             Registrar Usuario
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-st">
+                        <div class="flex-grow-1">
+                            <mat-form-field style="width: 880px; height: 70px;">
+                                <mat-label>Filter</mat-label>
+                                <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el Nombre del estudiante" #input>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
                 <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8">
                     <!-- Name Column -->
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        <td mat-cell *matCellDef="let element"> 
+                            <diV class="input-group ">
+                                <i class="bi bi-person "></i>
+                                <span class="mx-2">{{element.name}} </span>
+                            </diV>
+                        </td>
                     </ng-container>
     
                     <!-- Action Column -->
                     <ng-container matColumnDef="id">
                         <th mat-header-cell *matHeaderCellDef> Acción </th>
                         <td mat-cell *matCellDef="let element">
-                            <a [routerLink]="['/student-detail', element.studentId]" (click)="navigateToStudentDetails(element)">
-                                Ver Detalles 
-                            </a> 
+                            <div class="d-flex flex-row justify-content-around">
+                                <a [routerLink]="['/student-detail', element.id]" (click)="navigateToStudentDetails(element)" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver detalle">
+                                    <i class="bi bi-search"></i>
+                                </a> 
+                                <a class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" (click)="removeStudent(element.id)">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                                <!-- <a class="text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar">
+                                    <i class="bi bi-pencil"></i>
+                                </a> -->
+
+                            </div>
                         </td>
                     </ng-container>
     

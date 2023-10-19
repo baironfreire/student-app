@@ -10,20 +10,38 @@
                         <form [formGroup]="formEstudent" (ngSubmit)="onSubmit()">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre: </label>
-                                <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-person"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name">
+                                </div>
                                 <app-form-control-error formControlName="name"></app-form-control-error>
                             </div>
                             <div class="mb-3">
                                 <label for="age" class="form-label">Edad: </label>
-                                <input type="number" class="form-control" id="age" aria-describedby="age" formControlName="age">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-calendar"></i>
+                                    </span>
+                                    <input type="number" class="form-control" id="age" aria-describedby="age" formControlName="age">
+                                </div>
                                 <app-form-control-error formControlName="age"></app-form-control-error>
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Dirección de residencia: </label>
-                                <input type="text" class="form-control" id="address" aria-describedby="address" formControlName="address">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-map"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="address" aria-describedby="address" formControlName="address">
+                                </div>
                                 <!-- <app-form-control-error formControlName="address"></app-form-control-error> -->
                             </div>
-                            <button type="submit" class="btn btn-primary" [disabled]="!formEstudent.valid">Actualizar información</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="!formEstudent.valid">
+                                Actualizar información
+                                <i class="bi bi-pencil"></i>
+                            </button>
                         </form>
                     </div>
                     <div class="col-6">
@@ -35,10 +53,12 @@
                                             <form (submit)="onSumbiQualification()">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text">
-                                                        <i class="bi bi-person"></i>
+                                                        <i class="bi bi-mortarboard"></i>
                                                     </span>
-                                                    <input type="text" [(ngModel)]="newQualification.subject" name="name" class="form-control" placeholder="Ingrese una cualificación" id="nombre">
-                                                    <button type="submit" class="btn btn-primary">Agregar</button>
+                                                    <input type="text" [(ngModel)]="newQualification.qualificationName" name="name" class="form-control" placeholder="Ingrese una cualificación" id="nombre">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
                                                 </div>
                                             </form>
                                         </div>
@@ -54,9 +74,14 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let qualification of student.qualifications; let i = index">
-                                            <td>{{qualification.subject}}</td>
                                             <td>
-                                                <a (click)="removeQualification(i)" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+                                                <diV class="input-group">
+                                                    <i class="bi bi-book "></i>
+                                                    <span class="mx-2">{{qualification.qualificationName}}</span>
+                                                </diV>
+                                            </td>
+                                            <td>
+                                                <a (click)="removeQualification(i, qualification.id)" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
                                                     <i class="bi bi-trash"></i>
                                                 </a>
                                             </td>
