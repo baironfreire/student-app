@@ -35,7 +35,6 @@ export class StudentAddComponent {
     if(!this.formStudentSave.validate()) return;
     this._studentService.addStudent(this.formStudentSave.getRawValue()).subscribe(
       (student:any) => {
-        console.log('student', student);
         this._alertService.openConfirmsSwal({
           title: "Success",
           text: 'Registro Exitoso!, (Desea ir a la lista de estudiantes)',

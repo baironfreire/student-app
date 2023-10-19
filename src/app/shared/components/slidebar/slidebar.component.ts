@@ -9,8 +9,5 @@ import { SidebarService } from '../../services/sidebar.service';
 export class SlidebarComponent {
     constructor(
       public _sidebarService: SidebarService
-    ){
-      console.log('menu', _sidebarService.menu.submenu);
-      
-    }
+    ){ }
 }

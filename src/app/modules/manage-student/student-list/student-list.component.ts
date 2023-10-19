@@ -39,7 +39,6 @@ export class StudentListComponent {
 
   public async fillTable(){
     this._studentService.getStudents().subscribe((response:any)=>{
-      console.log('resp', response.students);
       if(response.code == 'SUCCESSFUL_OPERATION'){
         this.dataSource = new MatTableDataSource<IEstudent>(response.students);
       }else{
@@ -60,8 +59,6 @@ export class StudentListComponent {
   }
 
   navigateToStudentDetails(student: any) {
-    console.log('student >>>>', student);
-    
     this.sharedService.setSharedData(student);
   }
 

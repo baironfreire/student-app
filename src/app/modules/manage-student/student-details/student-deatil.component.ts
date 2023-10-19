@@ -81,14 +81,10 @@ export class StudentDeatilComponent {
       id: 0,
       qualificationName: '',
       studentId: this.student.id
-    }
-    console.log('qualifications', this.newQualification);
-    
+    }    
   }
 
-  public buildFormEstudent(formBuilder: FormBuilder, student:any): FormGroup {
-    console.log('estuden llega al build', student);
-    
+  public buildFormEstudent(formBuilder: FormBuilder, student:any): FormGroup {   
     return formBuilder.group({
       id:       [student.id, [Validators.required]],
       name:     [student.name, [Validators.required, Validators.maxLength(50)]],
@@ -128,9 +124,7 @@ export class StudentDeatilComponent {
 
   } 
 
-  onSumbiQualification() {
-    console.log('newQualification', this.newQualification);
-    
+  onSumbiQualification() {   
     if (this.newQualification.qualificationName != '') {
       this._qualificationService.save(this.newQualification).subscribe(
         (response:any) => {
