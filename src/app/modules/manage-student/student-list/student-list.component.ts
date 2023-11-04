@@ -40,7 +40,7 @@ export class StudentListComponent {
   public async fillTable(){
     this._studentService.getStudents().subscribe((response:any)=>{
       if(response.code == 'SUCCESSFUL_OPERATION'){
-        this.dataSource = new MatTableDataSource<IEstudent>(response.students);
+        this.dataSource = new MatTableDataSource<IEstudent>(response.data);
       }else{
         this.dataSource = new MatTableDataSource<IEstudent>([]);
         this._alertService.openConfirmsSwal({
@@ -82,12 +82,20 @@ export class StudentListComponent {
       },
       (error) => {
         console.log('error', error);
+        if(error.error.code=='UNPROCESSABLE_ENTITY'){
+          this._alertService.openSwal({
+            title: 'Error!',
+            text: error.error.message,
+            type: 'error'
+          });
+        }else{
+          this._alertService.openSwal({
+            title: 'Error!',
+            text: 'Se produjo un error en la operación, por favor contacte al administrador del sitio',
+            type: 'error'
+          });
+        }
         
-        this._alertService.openSwal({
-          title: 'Error!',
-          text: 'Se produjo un error en la operación, por favor contacte al administrador del sitio',
-          type: 'error'
-        });
       }
     )
   }

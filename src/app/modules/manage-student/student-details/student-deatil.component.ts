@@ -61,8 +61,10 @@ export class StudentDeatilComponent {
       this.idStudent = params['id'];
       this._studentService.getQualificationsByStudent(this.idStudent).subscribe(
         (response:any) => {
+          console.log('response', response);
+          
           if(response.code == "SUCCESSFUL_OPERATION"){
-            this.student = response.student;
+            this.student = response.data;
             this.formEstudent = this.buildFormEstudent(this._formBuilder, this.student);
             this.initQualification();
           }else{
@@ -127,11 +129,9 @@ export class StudentDeatilComponent {
   onSumbiQualification() {   
     if (this.newQualification.qualificationName != '') {
       this._qualificationService.save(this.newQualification).subscribe(
-        (response:any) => {
-          console.log('respuesta', response);
-          
+        (response:any) => {         
           if(response.code == 'CREATED'){
-            this.student.qualifications.push(response.qualification);
+            this.student.qualifications.push(response.data);
             this.newQualification = {qualificationName: '', id: 0, studentId: this.student.id};
           }else{
             this._alertService.openSwal({
